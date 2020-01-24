@@ -125,6 +125,9 @@ matchGuards (BindStmt _ pat bind_rhs _ _ : stmts) ctx rhs rhs_ty = do
     let upat = unLoc pat
         dicts = collectEvVarsPat upat
     match_var <- selectMatchVar Many upat
+       -- We only allow unrestricted patterns in guard, hence the `Many`
+       -- above. It isn't clear what linear patterns would mean, maybe we will
+       -- figure it out in the future.
 
     dflags <- getDynFlags
     match_result <-
