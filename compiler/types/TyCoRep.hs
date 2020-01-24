@@ -1080,10 +1080,10 @@ isMultiplicityVar :: TyVar -> Bool
 isMultiplicityVar = isMultiplicityTy . tyVarKind
 
 isLinearType :: Type -> Bool
--- ^ @isLinear t@ Returns @True@ of a if @t@ is a type of (curried) function
+-- ^ @isLinear t@ returns @True@ of a if @t@ is a type of (curried) function
 -- where at least one argument is linear (or otherwise non-unrestricted). We use
 -- this function to check whether it is safe to eta reduce an Id in CorePrep. It
--- is always safe to return 'True', because 'True' deactivate the optimisation.
+-- is always safe to return 'True', because 'True' deactivates the optimisation.
 isLinearType ty = case ty of
                       FunTy _ Many _ res -> isLinearType res
                       FunTy _ _ _ _ -> True
